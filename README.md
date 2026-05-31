@@ -1,44 +1,97 @@
-# Study FPGA
+# Study FPGA · 系统化 FPGA 学习项目
 
-FPGA 学习笔记、代码示例与仿真项目，从零开始掌握数字逻辑设计与硬件描述语言。
+一套**面向有软件经验工程师**的 FPGA 系统学习项目：从"软件思维 → 硬件思维"的迁移讲起，
+配 9 个**可运行、带自校验测试**的 Verilog 案例（基础 → 进阶 → 高级），统一的运行/调试方法，
+全程可用**开源工具链**在本机仿真，无需开发板即可上手。
 
-## 学习路线
+> 如果你和作者一样有多年软件经验，强烈建议先读 [`docs/02_for_software_engineers.md`](docs/02_for_software_engineers.md)，
+> 它会帮你跨过"并行 vs 串行"这个最大的认知坎。
 
-| 阶段 | 内容 | 目录 |
-|------|------|------|
-| 基础 | Verilog 语法、组合逻辑、时序逻辑 | `src/basics/` |
-| 进阶 | 状态机、接口协议、模块化设计 | `src/intermediate/` |
-| 高级 | DSP、高速接口、综合优化 | `src/advanced/` |
-
-## 环境要求
-
-- **仿真器**: [Icarus Verilog](https://steveicarus.github.io/iverilog/) + GTKWave
-- **综合工具**: Xilinx Vivado / Intel Quartus (按需)
-- **开发板**: 推荐 Digilent Basys 3 / Nexys A7 (Xilinx Artix-7)
-
-## 快速开始
+## 30 秒上手
 
 ```bash
-# 编译并运行第一个示例
+# 1) 安装开源工具链（Ubuntu/Debian）
+sudo apt-get install -y iverilog gtkwave verilator make
+#    macOS: brew install icarus-verilog gtkwave verilator make
+
+# 2) 克隆并一键跑通全部案例（应全部 [PASS]）
+git clone https://github.com/KingOfZhao/study_fpga.git
+cd study_fpga
+make test
+
+# 3) 跑单个案例并看波形
 cd src/basics/01_hello_verilog
-iverilog -o hello_tb.vvp hello.v hello_tb.v
-vvp hello_tb.vvp
-gtkwave hello_tb.vcd
+make          # 自校验仿真
+make wave     # GTKWave 看波形
 ```
+
+详细安装（含 Windows/WSL、厂商工具、开发板选型）见 [`docs/01_environment.md`](docs/01_environment.md)。
+
+## 学习路线（建议按顺序）
+
+先读文档建立框架，再逐个跑案例。完整路线与里程碑见 [`docs/00_roadmap.md`](docs/00_roadmap.md)。
+
+| 阶段 | 案例 | 学到的核心概念 |
+|------|------|----------------|
+| **基础** | [`basics/01_hello_verilog`](src/basics/01_hello_verilog) | 计数器、时序逻辑、复位、第一个波形 |
+| | [`basics/02_combinational`](src/basics/02_combinational) | 组合逻辑、全加器、`assign` |
+| | [`basics/03_mux_decoder`](src/basics/03_mux_decoder) | MUX/译码器、`always @(*)`、锁存器陷阱 |
+| | [`basics/04_sequential`](src/basics/04_sequential) | 触发器、移位寄存器、`<=` vs `=` |
+| **进阶** | [`intermediate/01_fsm`](src/intermediate/01_fsm) | 三段式状态机（交通灯） |
+| | [`intermediate/02_uart`](src/intermediate/02_uart) | UART 收发、波特率计数、跨时钟同步 |
+| | [`intermediate/03_fifo`](src/intermediate/03_fifo) | 同步 FIFO、片上 RAM、指针/满空 |
+| **高级** | [`advanced/01_pwm_led`](src/advanced/01_pwm_led) | PWM、LED 呼吸灯/电机调速 |
+| | [`advanced/02_spi_master`](src/advanced/02_spi_master) | SPI 主机、全双工同步串行总线 |
+
+每个案例目录都包含：设计 `*.v` + 自校验 testbench `*_tb.v` + `Makefile` + `README.md`（原理/运行/动手改）。
+
+## 统一的运行 / 调试接口
+
+| 命令 | 作用 |
+|------|------|
+| `make test` | （根目录）跑所有案例的自校验仿真并汇总 |
+| `make lint` | （根目录）对所有设计做 verilator 静态检查 |
+| `make list` | 列出全部案例目录 |
+| `make`（案例内） | 编译 + 仿真，打印 `[PASS]`/`[FAIL]` |
+| `make wave`（案例内） | 用 GTKWave 打开波形 |
+| `make clean` | 清理生成文件 |
+
+调试方法（波形 / 打印 / lint / testbench 纪律）详见 [`docs/03_simulation_and_debug.md`](docs/03_simulation_and_debug.md)。
+
+## 文档导航
+
+| 文档 | 内容 |
+|------|------|
+| [`docs/00_roadmap.md`](docs/00_roadmap.md) | 系统学习路线与阶段里程碑 |
+| [`docs/01_environment.md`](docs/01_environment.md) | 环境部署（开源工具链 + 厂商工具 + 开发板） |
+| [`docs/02_for_software_engineers.md`](docs/02_for_software_engineers.md) | 软件 → 硬件思维迁移（重点先读） |
+| [`docs/03_simulation_and_debug.md`](docs/03_simulation_and_debug.md) | 运行方法与调试方法 |
+| [`docs/04_tools_and_components.md`](docs/04_tools_and_components.md) | FPGA 内部资源 + 工具链 + 组件总览 |
+| [`docs/05_resources.md`](docs/05_resources.md) | 精选开源项目与权威学习资料 |
+| [`docs/verilog_cheatsheet.md`](docs/verilog_cheatsheet.md) | Verilog 语法速查 |
+| [`constraints/`](constraints) | 上板引脚约束模板（Basys3 / iCE40） |
 
 ## 目录结构
 
 ```
 study_fpga/
-├── docs/           # 学习笔记与参考资料
-├── src/            # 源码
-│   ├── basics/     # 基础示例
-│   ├── intermediate/ # 进阶项目
-│   └── advanced/   # 高级专题
-├── simulations/    # 仿真波形与测试平台
-└── tools/          # 辅助脚本
+├── README.md                # 本文件：学习门户
+├── Makefile                 # 顶层：make test / lint / list / clean
+├── common.mk                # 所有案例共用的仿真规则
+├── docs/                    # 系统文档（路线/环境/思维/调试/工具/资料）
+├── src/
+│   ├── basics/              # 基础案例 01-04
+│   ├── intermediate/        # 进阶案例 01-03
+│   └── advanced/            # 高级案例 01-02
+├── constraints/             # 上板引脚约束模板
+├── scripts/                 # run_all.sh / lint_all.sh
+└── .github/workflows/ci.yml # CI：自动跑全部自校验仿真
 ```
 
-## 贡献
+## 工具链
 
+仿真/学习全程开源：**Icarus Verilog**（仿真）+ **GTKWave**（波形）+ **Verilator**（静态检查）+ **make**。
+上板时再按需安装 Vivado / Quartus / 开源 icestorm 流程。
+
+## 贡献
 见 [CONTRIBUTING.md](CONTRIBUTING.md)。

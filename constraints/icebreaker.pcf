@@ -1,0 +1,21 @@
+# iCEBreaker (Lattice iCE40 UP5K) 引脚约束模板（nextpnr/icestorm .pcf）
+# 用法：nextpnr-ice40 ... --pcf constraints/icebreaker.pcf
+# 把信号名改成你顶层实际端口名；按需取消注释。
+
+# ---- 12 MHz 板载时钟 ----
+set_io clk 35
+
+# ---- 板载 + 扩展 LED ----
+# set_io led_r 11
+# set_io led_g 37
+# set_io {led[0]} 11
+# set_io {led[1]} 37
+
+# ---- 按键 ----
+# set_io btn 10
+
+# ---- UART（经 FTDI 到 PC）----
+# set_io uart_rx 6
+# set_io uart_tx 9
+
+# 注：不同批次/扩展板引脚可能不同，请以你手上的板子原理图为准。
