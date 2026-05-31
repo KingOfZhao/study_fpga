@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FPGA 学习平台 · 在线编辑与波形仿真</title>
+  <!-- CodeMirror 5（CDN）：代码编辑器 + Verilog 语法高亮 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🔌 FPGA 学习平台 <span class="sub">在线改代码 · 实时看波形</span></div>
+    <div class="actions">
+      <button id="btn-run" class="primary">▶ 运行仿真 (A)</button>
+      <button id="btn-interactive" title="对组合逻辑：拨动输入看输出">🎛 交互式芯片仿真 (B)</button>
+      <span id="status" class="status"></span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- 左：案例列表 -->
+    <aside class="sidebar">
+      <div class="panel-title">案例库</div>
+      <div id="example-list" class="example-list">加载中…</div>
+      <div class="panel-title">环境</div>
+      <div id="env-info" class="env-info">检测中…</div>
+    </aside>
+
+    <!-- 中：编辑器 -->
+    <section class="editor-area">
+      <div id="file-tabs" class="file-tabs"></div>
+      <div id="editor-host" class="editor-host"></div>
+      <div id="readme" class="readme"></div>
+    </section>
+
+    <!-- 右：波形 + 日志 -->
+    <section class="result-area">
+      <div class="result-tabs">
+        <button class="rtab active" data-tab="wave">波形</button>
+        <button class="rtab" data-tab="log">仿真日志</button>
+        <button class="rtab" data-tab="interactive">交互面板</button>
+      </div>
+
+      <div class="rpane" id="pane-wave">
+        <div class="wave-toolbar">
+          <button id="zoom-in">＋</button>
+          <button id="zoom-out">－</button>
+          <button id="zoom-fit">适应</button>
+          <span id="wave-meta" class="wave-meta"></span>
+        </div>
+        <div id="wave-host" class="wave-scroll"></div>
+      </div>
+
+      <div class="rpane hidden" id="pane-log">
+        <pre id="log-output" class="log-output">点击「运行仿真」后这里显示编译与运行日志…</pre>
+      </div>
+
+      <div class="rpane hidden" id="pane-interactive">
+        <div id="interactive-host" class="interactive-host">
+          选择一个<strong>组合逻辑</strong>案例（如 02_combinational 全加器、03_mux_decoder），
+          点击上方「🎛 交互式芯片仿真」即可拨动输入开关、实时查看输出。
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CodeMirror 脚本 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
+  <script src="/static/waveform.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

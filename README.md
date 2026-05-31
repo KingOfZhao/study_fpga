@@ -27,6 +27,19 @@ make wave     # GTKWave 看波形
 
 详细安装（含 Windows/WSL、厂商工具、开发板选型）见 [`docs/01_environment.md`](docs/01_environment.md)。
 
+## 🌐 可视化 Web 平台（在线改代码 + 实时波形 + 交互式芯片仿真）
+
+不想敲命令行？仓库自带一个 Web 平台：浏览器里直接改 Verilog，后端用真实 `iverilog`/`vvp` 仿真，
+用 **Canvas 画波形**；组合逻辑还能**拨动输入开关、实时看输出 LED**。
+
+```bash
+cd web
+./run.sh            # macOS/Linux 一键启动（需先 brew install icarus-verilog）
+# 浏览器打开 http://localhost:8000
+```
+
+完整说明（macOS 部署、运行、调试、芯片仿真操作方法、架构）见 [`web/README.md`](web/README.md)。
+
 ## 学习路线（建议按顺序）
 
 先读文档建立框架，再逐个跑案例。完整路线与里程碑见 [`docs/00_roadmap.md`](docs/00_roadmap.md)。
@@ -85,6 +98,7 @@ study_fpga/
 │   └── advanced/            # 高级案例 01-02
 ├── constraints/             # 上板引脚约束模板
 ├── scripts/                 # run_all.sh / lint_all.sh
+├── web/                     # 🌐 可视化 Web 平台（FastAPI 后端 + Canvas 波形前端）
 └── .github/workflows/ci.yml # CI：自动跑全部自校验仿真
 ```
 
