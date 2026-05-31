@@ -1,7 +1,7 @@
 # Study FPGA · 系统化 FPGA 学习项目
 
 一套**面向有软件经验工程师**的 FPGA 系统学习项目：从"软件思维 → 硬件思维"的迁移讲起，
-配 19 个**可运行、带自校验测试**的 Verilog 案例（基础 → 进阶 → 高级 → 综合组合项目，台阶平滑、可线性学习），统一的运行/调试方法，
+配 **100 个可运行、带自校验测试**的 Verilog 案例（基础 24 + 进阶 30 + 高级 25 + 综合 21，台阶平滑、可线性学习），统一的运行/调试方法，
 全程可用**开源工具链**在本机仿真，无需开发板即可上手。
 
 > 如果你和作者一样有多年软件经验，强烈建议先读 [`docs/02_for_software_engineers.md`](docs/02_for_software_engineers.md)，
@@ -66,6 +66,7 @@ cd web
 | | [`projects/02_i2c_sensor_uart`](src/projects/02_i2c_sensor_uart) | I2C 读传感器 + UART 上报、开漏总线、跨外设握手 |
 | | [`projects/03_button_counter_seg`](src/projects/03_button_counter_seg) | 按键去抖+计数+数码管、多模块复用串联 |
 
+> 上表仅列出每个阶段的入门代表案例。**全部 100 个案例的完整索引**见 [`docs/07_examples_index.md`](docs/07_examples_index.md)（或根目录 `make list`）。
 > 综合组合项目把多个"原子组件"拼成真实系统；原子组件清单与可落地组合矩阵见 [`docs/06_components_and_combinations.md`](docs/06_components_and_combinations.md)。
 
 每个案例目录都包含：设计 `*.v` + 自校验 testbench `*_tb.v` + `Makefile` + `README.md`（原理/运行/动手改）。

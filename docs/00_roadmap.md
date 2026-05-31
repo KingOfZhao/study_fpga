@@ -19,7 +19,7 @@
 
 ## 阶段 0 · 搭好环境（半天）
 - 安装开源工具链：Icarus Verilog + GTKWave + Verilator（见 [`01_environment.md`](01_environment.md)）
-- 在仓库根目录跑 `make test`，确认 19 个案例全部 `[PASS]`
+- 在仓库根目录跑 `make test`，确认 100 个案例全部 `[PASS]`
 - **里程碑**：能独立编译并仿真 `src/basics/01_hello_verilog`，并用 GTKWave 看到波形
 
 ## 阶段 1 · 数字逻辑 + Verilog 基础（1~2 周）
