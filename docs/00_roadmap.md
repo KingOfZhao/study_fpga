@@ -19,7 +19,7 @@
 
 ## 阶段 0 · 搭好环境（半天）
 - 安装开源工具链：Icarus Verilog + GTKWave + Verilator（见 [`01_environment.md`](01_environment.md)）
-- 在仓库根目录跑 `make test`，确认 9 个案例全部 `[PASS]`
+- 在仓库根目录跑 `make test`，确认 16 个案例全部 `[PASS]`
 - **里程碑**：能独立编译并仿真 `src/basics/01_hello_verilog`，并用 GTKWave 看到波形
 
 ## 阶段 1 · 数字逻辑 + Verilog 基础（1~2 周）
@@ -29,6 +29,8 @@
   - `src/basics/02_combinational` 全加器（组合逻辑、`assign`）
   - `src/basics/03_mux_decoder` MUX/译码器（`always @(*)`、参数化、锁存器陷阱）
   - `src/basics/04_sequential` 触发器/移位寄存器（存储的本质）
+  - `src/basics/05_alu` ALU（`case` 多路运算、进位/溢出、参数化位宽——组合逻辑进阶）
+  - `src/basics/06_clock_divider` 分频/节拍发生器（使能脉冲、`$clog2`——时序逻辑进阶）
 - 配套练习：[HDLBits](https://hdlbits.01xz.net/) 的 Getting Started + Verilog Language 部分
 - **里程碑**：能默写"三种 always 写法"（组合/同步时序/带异步复位），并解释 `=` 与 `<=` 为什么不能混用
 
@@ -38,6 +40,9 @@
   - `src/intermediate/01_fsm` 交通灯（三段式 FSM）
   - `src/intermediate/02_uart` UART 收发（真实串行协议 + 波特率计数 + 跨时钟同步）
   - `src/intermediate/03_fifo` 同步 FIFO（片上 RAM + 指针 + 满空判定）
+  - `src/intermediate/04_debounce` 按键消抖 + 边沿检测（两级同步、单周期脉冲）
+  - `src/intermediate/05_seven_seg` 数码管显示（二进制转 BCD + 7 段译码 + 扫描复用）
+  - `src/intermediate/06_ram` 片上 Block RAM（同步读写、读延迟、BRAM 推断）
 - **里程碑**：独立写一个 FSM 解析某种简单协议；理解 FIFO 为什么是模块间解耦的利器
 
 ## 阶段 3 · 外设与接口、上板（3~4 周）
@@ -45,6 +50,8 @@
 - 案例：
   - `src/advanced/01_pwm_led` PWM（LED 呼吸灯/电机）
   - `src/advanced/02_spi_master` SPI 主机（同步串行总线）
+  - `src/advanced/03_vga` VGA 时序产生器（640×480@60、行/场同步、像素坐标）
+  - `src/advanced/04_fir` 移动平均/FIR 滤波器（滑动窗口、运行和、定点 DSP 入门）
   - 约束示例见 [`../constraints/`](../constraints/)
 - 实操：把任意一个案例综合并**烧到真实开发板**（见 [`01_environment.md`](01_environment.md) 厂商工具部分）
 - **里程碑**：板子上按键去抖后驱动 LED/数码管；用 SPI 读一个真实传感器

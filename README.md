@@ -1,7 +1,7 @@
 # Study FPGA · 系统化 FPGA 学习项目
 
 一套**面向有软件经验工程师**的 FPGA 系统学习项目：从"软件思维 → 硬件思维"的迁移讲起，
-配 9 个**可运行、带自校验测试**的 Verilog 案例（基础 → 进阶 → 高级），统一的运行/调试方法，
+配 16 个**可运行、带自校验测试**的 Verilog 案例（基础 → 进阶 → 高级，台阶平滑、可线性学习），统一的运行/调试方法，
 全程可用**开源工具链**在本机仿真，无需开发板即可上手。
 
 > 如果你和作者一样有多年软件经验，强烈建议先读 [`docs/02_for_software_engineers.md`](docs/02_for_software_engineers.md)，
@@ -50,11 +50,18 @@ cd web
 | | [`basics/02_combinational`](src/basics/02_combinational) | 组合逻辑、全加器、`assign` |
 | | [`basics/03_mux_decoder`](src/basics/03_mux_decoder) | MUX/译码器、`always @(*)`、锁存器陷阱 |
 | | [`basics/04_sequential`](src/basics/04_sequential) | 触发器、移位寄存器、`<=` vs `=` |
+| | [`basics/05_alu`](src/basics/05_alu) | ALU、`case` 多路运算、进位/溢出、参数化位宽 |
+| | [`basics/06_clock_divider`](src/basics/06_clock_divider) | 分频/节拍发生器、使能脉冲、`$clog2` |
 | **进阶** | [`intermediate/01_fsm`](src/intermediate/01_fsm) | 三段式状态机（交通灯） |
 | | [`intermediate/02_uart`](src/intermediate/02_uart) | UART 收发、波特率计数、跨时钟同步 |
 | | [`intermediate/03_fifo`](src/intermediate/03_fifo) | 同步 FIFO、片上 RAM、指针/满空 |
+| | [`intermediate/04_debounce`](src/intermediate/04_debounce) | 按键消抖、两级同步、边沿检测脉冲 |
+| | [`intermediate/05_seven_seg`](src/intermediate/05_seven_seg) | 二进制转 BCD、7 段译码、扫描复用显示 |
+| | [`intermediate/06_ram`](src/intermediate/06_ram) | 片上 Block RAM、同步读写、读延迟 |
 | **高级** | [`advanced/01_pwm_led`](src/advanced/01_pwm_led) | PWM、LED 呼吸灯/电机调速 |
 | | [`advanced/02_spi_master`](src/advanced/02_spi_master) | SPI 主机、全双工同步串行总线 |
+| | [`advanced/03_vga`](src/advanced/03_vga) | VGA 时序、行/场同步、像素坐标 |
+| | [`advanced/04_fir`](src/advanced/04_fir) | 移动平均/FIR、滑动窗口、定点 DSP |
 
 每个案例目录都包含：设计 `*.v` + 自校验 testbench `*_tb.v` + `Makefile` + `README.md`（原理/运行/动手改）。
 
@@ -93,9 +100,9 @@ study_fpga/
 ├── common.mk                # 所有案例共用的仿真规则
 ├── docs/                    # 系统文档（路线/环境/思维/调试/工具/资料）
 ├── src/
-│   ├── basics/              # 基础案例 01-04
-│   ├── intermediate/        # 进阶案例 01-03
-│   └── advanced/            # 高级案例 01-02
+│   ├── basics/              # 基础案例 01-06
+│   ├── intermediate/        # 进阶案例 01-06
+│   └── advanced/            # 高级案例 01-04
 ├── constraints/             # 上板引脚约束模板
 ├── scripts/                 # run_all.sh / lint_all.sh
 ├── web/                     # 🌐 可视化 Web 平台（FastAPI 后端 + Canvas 波形前端）
