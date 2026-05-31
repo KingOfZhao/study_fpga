@@ -94,7 +94,9 @@ cd web
 | [`docs/03_simulation_and_debug.md`](docs/03_simulation_and_debug.md) | 运行方法与调试方法 |
 | [`docs/04_tools_and_components.md`](docs/04_tools_and_components.md) | FPGA 内部资源 + 工具链 + 组件总览 |
 | [`docs/05_resources.md`](docs/05_resources.md) | 精选开源项目与权威学习资料 |
-| [`docs/06_components_and_combinations.md`](docs/06_components_and_combinations.md) | FPGA 操作的原子组件清单 + 实际工作组合矩阵 |
+| [`docs/06_components_and_combinations.md`](docs/06_components_and_combinations.md) | FPGA 操作的原子组件清单（119 条）+ 实际工作组合矩阵 |
+| [`docs/07_examples_index.md`](docs/07_examples_index.md) | **全部 100 个案例的完整索引**（按目录顺序） |
+| [`docs/08_hardware_and_synthesis.md`](docs/08_hardware_and_synthesis.md) | 上板与工程化注意事项（同步器/复位/三态/CDC/约束/烧录） |
 | [`docs/verilog_cheatsheet.md`](docs/verilog_cheatsheet.md) | Verilog 语法速查 |
 | [`constraints/`](constraints) | 上板引脚约束模板（Basys3 / iCE40） |
 
@@ -107,10 +109,11 @@ study_fpga/
 ├── common.mk                # 所有案例共用的仿真规则
 ├── docs/                    # 系统文档（路线/环境/思维/调试/工具/资料）
 ├── src/
-│   ├── basics/              # 基础案例 01-06
-│   ├── intermediate/        # 进阶案例 01-06
-│   ├── advanced/            # 高级案例 01-04
-│   └── projects/            # 综合组合项目 01-03（多组件组合）
+│   ├── basics/              # 基础案例 01-24
+│   ├── intermediate/        # 进阶案例 01-30
+│   ├── advanced/            # 高级案例 01-25
+│   └── projects/            # 综合组合项目 01-21（多组件组合）
+├── hardening/               # 上板加固模块（同步器/复位同步/I2C三态，已自检）
 ├── constraints/             # 上板引脚约束模板
 ├── scripts/                 # run_all.sh / lint_all.sh
 ├── web/                     # 🌐 可视化 Web 平台（FastAPI 后端 + Canvas 波形前端）
