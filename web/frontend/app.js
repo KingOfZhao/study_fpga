@@ -62,8 +62,8 @@
     state.examples.forEach((ex) => {
       (cats[ex.category] = cats[ex.category] || []).push(ex);
     });
-    const order = ["basics", "intermediate", "advanced"];
-    const catName = { basics: "基础", intermediate: "进阶", advanced: "高级" };
+    const order = ["basics", "intermediate", "advanced", "projects"];
+    const catName = { basics: "基础", intermediate: "进阶", advanced: "高级", projects: "综合组合" };
     Object.keys(cats).sort((a, b) => order.indexOf(a) - order.indexOf(b)).forEach((cat) => {
       const t = document.createElement("div");
       t.className = "cat";

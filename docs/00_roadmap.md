@@ -19,7 +19,7 @@
 
 ## 阶段 0 · 搭好环境（半天）
 - 安装开源工具链：Icarus Verilog + GTKWave + Verilator（见 [`01_environment.md`](01_environment.md)）
-- 在仓库根目录跑 `make test`，确认 16 个案例全部 `[PASS]`
+- 在仓库根目录跑 `make test`，确认 19 个案例全部 `[PASS]`
 - **里程碑**：能独立编译并仿真 `src/basics/01_hello_verilog`，并用 GTKWave 看到波形
 
 ## 阶段 1 · 数字逻辑 + Verilog 基础（1~2 周）
@@ -55,6 +55,15 @@
   - 约束示例见 [`../constraints/`](../constraints/)
 - 实操：把任意一个案例综合并**烧到真实开发板**（见 [`01_environment.md`](01_environment.md) 厂商工具部分）
 - **里程碑**：板子上按键去抖后驱动 LED/数码管；用 SPI 读一个真实传感器
+
+## 阶段 3.5 · 多组件组合项目（1~2 周）
+- 概念：把多个"原子组件"（传感器/编码器/电机/显示）用 FPGA 逻辑粘合成真实子系统；模块间用 done/valid 脉冲握手；闭环反馈
+- 案例（`src/projects/`，皆可运行、带自校验）：
+  - `src/projects/01_encoder_pwm_loop` 旋转编码器 + 测速 + P 控制 + PWM（**闭环电机调速**，tb 内置被控对象模型）
+  - `src/projects/02_i2c_sensor_uart` I2C 读传感器 + UART 上报（开漏总线、跨外设握手 FSM）
+  - `src/projects/03_button_counter_seg` 按键去抖 + 计数 + 数码管（多模块复用串联）
+- 原子组件清单与可落地组合矩阵见 [`06_components_and_combinations.md`](06_components_and_combinations.md)
+- **里程碑**：能把"输入采集 → 处理 → 输出/通信"分层，独立拼出一个新的多组件系统
 
 ## 阶段 4 · 进阶专题（持续）
 - DSP（FIR 滤波器、定点运算、流水线）

@@ -1,7 +1,7 @@
 # Study FPGA · 系统化 FPGA 学习项目
 
 一套**面向有软件经验工程师**的 FPGA 系统学习项目：从"软件思维 → 硬件思维"的迁移讲起，
-配 16 个**可运行、带自校验测试**的 Verilog 案例（基础 → 进阶 → 高级，台阶平滑、可线性学习），统一的运行/调试方法，
+配 19 个**可运行、带自校验测试**的 Verilog 案例（基础 → 进阶 → 高级 → 综合组合项目，台阶平滑、可线性学习），统一的运行/调试方法，
 全程可用**开源工具链**在本机仿真，无需开发板即可上手。
 
 > 如果你和作者一样有多年软件经验，强烈建议先读 [`docs/02_for_software_engineers.md`](docs/02_for_software_engineers.md)，
@@ -62,6 +62,11 @@ cd web
 | | [`advanced/02_spi_master`](src/advanced/02_spi_master) | SPI 主机、全双工同步串行总线 |
 | | [`advanced/03_vga`](src/advanced/03_vga) | VGA 时序、行/场同步、像素坐标 |
 | | [`advanced/04_fir`](src/advanced/04_fir) | 移动平均/FIR、滑动窗口、定点 DSP |
+| **综合组合** | [`projects/01_encoder_pwm_loop`](src/projects/01_encoder_pwm_loop) | 编码器+测速+P控制+PWM、闭环电机调速 |
+| | [`projects/02_i2c_sensor_uart`](src/projects/02_i2c_sensor_uart) | I2C 读传感器 + UART 上报、开漏总线、跨外设握手 |
+| | [`projects/03_button_counter_seg`](src/projects/03_button_counter_seg) | 按键去抖+计数+数码管、多模块复用串联 |
+
+> 综合组合项目把多个"原子组件"拼成真实系统；原子组件清单与可落地组合矩阵见 [`docs/06_components_and_combinations.md`](docs/06_components_and_combinations.md)。
 
 每个案例目录都包含：设计 `*.v` + 自校验 testbench `*_tb.v` + `Makefile` + `README.md`（原理/运行/动手改）。
 
@@ -88,6 +93,7 @@ cd web
 | [`docs/03_simulation_and_debug.md`](docs/03_simulation_and_debug.md) | 运行方法与调试方法 |
 | [`docs/04_tools_and_components.md`](docs/04_tools_and_components.md) | FPGA 内部资源 + 工具链 + 组件总览 |
 | [`docs/05_resources.md`](docs/05_resources.md) | 精选开源项目与权威学习资料 |
+| [`docs/06_components_and_combinations.md`](docs/06_components_and_combinations.md) | FPGA 操作的原子组件清单 + 实际工作组合矩阵 |
 | [`docs/verilog_cheatsheet.md`](docs/verilog_cheatsheet.md) | Verilog 语法速查 |
 | [`constraints/`](constraints) | 上板引脚约束模板（Basys3 / iCE40） |
 
@@ -102,7 +108,8 @@ study_fpga/
 ├── src/
 │   ├── basics/              # 基础案例 01-06
 │   ├── intermediate/        # 进阶案例 01-06
-│   └── advanced/            # 高级案例 01-04
+│   ├── advanced/            # 高级案例 01-04
+│   └── projects/            # 综合组合项目 01-03（多组件组合）
 ├── constraints/             # 上板引脚约束模板
 ├── scripts/                 # run_all.sh / lint_all.sh
 ├── web/                     # 🌐 可视化 Web 平台（FastAPI 后端 + Canvas 波形前端）
