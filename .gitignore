@@ -1,0 +1,32 @@
+# 仿真生成文件
+*.vvp
+*.vcd
+*.fst
+
+# 综合生成文件
+*.bit
+*.bin
+*.mcs
+*.sof
+*.pof
+*.rpt
+*.log
+*.jou
+*.str
+
+# 工具目录
+vivado/
+quartus/
+build/
+out/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
