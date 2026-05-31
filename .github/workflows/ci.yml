@@ -1,0 +1,28 @@
+name: FPGA examples CI
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install open-source FPGA toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog verilator make
+
+      - name: Tool versions
+        run: |
+          iverilog -V | head -n 1
+          verilator --version
+
+      - name: Run all self-checking simulations
+        run: make test
+
+      - name: Lint designs (non-blocking)
+        run: make lint || true
