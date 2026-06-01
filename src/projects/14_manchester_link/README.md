@@ -1,7 +1,27 @@
-# 14 · 曼彻斯特编解码链路 manchester_link
+# 14 · 曼彻斯特链路 manchester_link
 
-manchester_enc -> 信道 -> manchester_dec：编码发送并还原字节，校验编码合法性。
+`manchester_enc → manchester_dec`：完整编码-传输-解码链路，校验端到端一致。
 
+## 这一课学什么
+- 把编/解码两端接成完整链路，验证 `decode(encode(x)) == x`
+- 自同步编码在“无独立时钟线”链路上的端到端工作流程
+- 错误检测在链路中的作用
+
+> 软件类比：像把序列化器和反序列化器接成回环，跑一遍数据完整性测试。这里走的是真实的位级波形。
+
+## 运行
 ```bash
-make
+make        # 发送多字节，校验解码端完整还原
+make wave
+make clean
 ```
+
+## 上板玩法
+- 单线/红外/RFID 风格的数据链路；实际需加位同步与前导码。
+
+## 动手改
+1. 加前导码/帧定界，做成完整帧协议。
+2. 注入误码，验证解码端错误检测。
+
+## 对应真实开源项目
+- 曼彻斯特链路见 10BASE-T 以太网、RFID；编/解码内核见本仓 `intermediate/23_manchester_enc`、`24_manchester_dec`。
